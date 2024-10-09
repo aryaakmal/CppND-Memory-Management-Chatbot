@@ -22,9 +22,11 @@ ChatLogic::ChatLogic()
     //std::cout << "ChatLogic Constructor" << std::endl;
     //_chatBot = new ChatBot("../images/chatbot.png");
     //_chatBot = ChatBot();
+    //_chatBot = new ChatBot();
 
     // add pointer to chatlogic so that chatbot answers can be passed on to the GUI
-    _chatBot->SetChatLogicHandle(this);
+    //std::cout << _chatBot << "\n";
+    //_chatBot->SetChatLogicHandle(this);
 
     ////
     //// EOF STUDENT CODE
@@ -233,11 +235,13 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
     // add chatbot to graph root node
     //_chatBot = new ChatBot("../images/chatbot.png");
     ChatBot chatBot("../images/chatbot.png");
+    SetChatbotHandle(&chatBot); // for _chatbot
     //_chatBot->SetChatLogicHandle(this);
+    chatBot.SetChatLogicHandle(this);
     //_chatBot->SetRootNode(rootNode);
     chatBot.SetRootNode(rootNode);
     //rootNode->MoveChatbotHere(_chatBot);
-    rootNode->MoveChatbotHere(std::move(&chatBot));
+    rootNode->MoveChatbotHere(std::move(chatBot));
     
     ////
     //// EOF STUDENT CODE
